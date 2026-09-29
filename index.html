@@ -53,7 +53,6 @@
       -webkit-text-fill-color: #7a7a7a;
     }
 
-    /* TABS */
     .tabs {
       display: flex;
       flex-wrap: wrap;
@@ -135,7 +134,6 @@
 
     .section-title i { color: #6b6b6b; font-size: 0.95rem; }
 
-    /* TRACK LIST */
     .track-list {
       display: flex;
       flex-direction: column;
@@ -202,7 +200,6 @@
       color: #7a7a7a;
     }
 
-    /* ALBUM LIST */
     .album-list {
       display: flex;
       flex-direction: column;
@@ -381,7 +378,6 @@
       margin-top: 1rem;
     }
 
-    /* Barre de progression précise */
     .fp-progress-wrap {
       display: flex;
       flex-direction: column;
@@ -437,12 +433,6 @@
 
     .fp-time-current { color: #fff; font-weight: 600; font-size: 1rem; }
 
-    .fp-time-percent {
-      font-size: 0.75rem;
-      color: #5a5a5a;
-      letter-spacing: 0.05em;
-    }
-
     .fp-buttons {
       display: flex;
       align-items: center;
@@ -479,7 +469,6 @@
 
     .fp-btn-main:hover { background: #d4d4d4; transform: scale(1.05); color: #0a0a0a; }
 
-    /* Lyrics */
     .fp-right {
       display: flex;
       flex-direction: column;
@@ -501,8 +490,8 @@
       overflow-y: auto;
       padding-right: 1rem;
       color: #c0c0c0;
-      font-size: 1.05rem;
-      line-height: 2;
+      font-size: 1rem;
+      line-height: 1.9;
       white-space: pre-wrap;
       font-weight: 400;
     }
@@ -521,7 +510,6 @@
     .fp-lyrics::-webkit-scrollbar-track { background: transparent; }
     .fp-lyrics::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 3px; }
 
-    /* À PROPOS */
     .about-section {
       margin-top: 4rem;
       padding-top: 2.5rem;
@@ -612,7 +600,54 @@
             data-title="50BMG (ft. abel31)"
             data-artist="Femtogo feat. abel31"
             data-src="https://www.image2url.com/r2/default/audio/1790700289813-0e838c61-3923-480c-9b95-d856b090267a.mp3"
-            data-lyrics="">
+            data-lyrics="[Couplet 1]
+Trouve moi en plein milieu des maelströms
+J'suis dans l'triangle, y a d'l'orage sur ma tête
+J'ai l'esprit fantôme, l'esprit tout monotone
+Et même sans l'vouloir, j'poursuis toujours la quête
+Seul dans ma chambre, j'avais qu'le logiciel
+J'tabassais des prods sur un iPhone 6
+Les trois lettres sur la carte, y a pas d'didacticiel
+Ils vont serrer du crâne sur les antagonistes
+J'suis plus Makarov que Shepherd
+Des fois, faut faire mal pour qu'enfin ils comprennent
+Seul, j'crame une mica près dеs fleurs
+J'espère cе sera pareil le jour où ça end
+Ils m'ont forcé à devenir belliqueux
+La mental', j'la garde et pas que sous liqueur
+Faut braquer cette merde un peu comme Dillinger
+S'enfuir 'vec le pactole dans un six litres deux
+Mon corbeau a tout vu du beffroi
+Il m'a dit : &quot;Prends les ledge, ça vaut mieux qu'un tout droit&quot;
+J'carry tous les jours un tech dans le jean
+Surveille bien le ciel, SPK, bientôt l'beam
+J'deviens pensif sur Hungarian Rhapsody
+Toujours dans les deux camps à la Aimen Dean
+.50BMG, il m'le faut dans l'garage
+J'le veux depuis môme, depuis qu'j'avais pas l'âge
+Le ciel change de couleur mais j'tourne pas la page
+Bloqué dans un truc où j'ai même pas les clefs
+J'vais crafter du C4, j'vais péter la cage
+Et vers chez moi, tu m'croiseras pas d'l'été
+Affilié au clan, y a qu'avec eux j'peux rouler
+Y a qu'avec eux j'peux toucher
+Dès qu'j'réussis, j'remplis une table de opps
+J'les fais bien manger, polonium dans l'pichet
+Ils vont nous prendre pour des SCP
+C'est la guerre auditive, y en a qu'ont d'jà perdu
+Jusqu'ici, j'le faisais qu'dans ma chambre
+Attends seulement qu'j'arrive dans la structure
+J'ai le chrono au-d'ssus d'ma face
+J'ai que soixante piges pour faire tout ce cash
+Dans la plaine comme Simon Riley
+J'sais qu'un jour ils vont v'nir me faire
+Sous alcool, sous gaz, tout est beau mais un jour on s'lasse
+Y a plus qu'mon corbeau, mon vaisseau
+J'suis seul, assis dans la clairière
+
+[Outro]
+Y a plus qu'mon corbeau, mon vaisseau
+J'suis seul, assis dans la clairière">
             <div class="track-play"><i class="fas fa-play"></i></div>
             <div class="track-info">
               <div class="track-title">50BMG (ft. abel31)</div>
@@ -733,7 +768,7 @@
     </footer>
   </div>
 
-  <!-- ====== PLAYER PLEIN ÉCRAN ====== -->
+  <!-- PLAYER PLEIN ÉCRAN -->
   <div class="fullscreen-player" id="fullscreenPlayer">
     <div class="fp-top">
       <div class="fp-label"><i class="fas fa-headphones"></i> Lecture en cours</div>
@@ -756,7 +791,6 @@
             </div>
             <div class="fp-times">
               <span class="fp-time-current" id="fpCurrent">0:00</span>
-              <span class="fp-time-percent" id="fpPercent">0%</span>
               <span id="fpDuration">0:00</span>
             </div>
           </div>
@@ -778,7 +812,6 @@
 
   <script>
     (function() {
-      /* ---------- TABS ---------- */
       const tabs = document.querySelectorAll('.tab-btn');
       const contents = {
         'femtogo': document.getElementById('femtogo'),
@@ -795,7 +828,6 @@
         });
       });
 
-      /* ---------- PLAYER ---------- */
       const audio = new Audio();
       audio.preload = 'metadata';
 
@@ -810,7 +842,6 @@
       const fpThumb = document.getElementById('fpThumb');
       const fpCurrent = document.getElementById('fpCurrent');
       const fpDuration = document.getElementById('fpDuration');
-      const fpPercent = document.getElementById('fpPercent');
       const fpLyrics = document.getElementById('fpLyrics');
       const fpBackward = document.getElementById('fpBackward');
       const fpForward = document.getElementById('fpForward');
@@ -856,6 +887,7 @@
         if (text && text.trim().length > 0) {
           fpLyrics.textContent = text;
           fpLyrics.classList.remove('empty');
+          fpLyrics.scrollTop = 0;
         } else {
           fpLyrics.textContent = 'Aucune parole disponible pour le moment.';
           fpLyrics.classList.add('empty');
@@ -874,11 +906,9 @@
         fpArtist.textContent = artist;
         loadLyrics(lyrics);
 
-        // Reset progress
         fpFill.style.width = '0%';
         fpThumb.style.left = '0%';
         fpCurrent.textContent = '0:00';
-        fpPercent.textContent = '0%';
 
         audio.src = src;
         audio.load();
@@ -901,7 +931,6 @@
         el.addEventListener('click', () => playTrack(el));
       });
 
-      /* ---------- CONTROLS ---------- */
       fpClose.addEventListener('click', closeFullscreen);
 
       fpToggle.addEventListener('click', () => {
@@ -935,7 +964,6 @@
         }
       });
 
-      /* ---------- PROGRESS BAR (précise, draggable) ---------- */
       let isDragging = false;
 
       function updateProgressFromEvent(e) {
@@ -945,11 +973,9 @@
         let pct = (clientX - rect.left) / rect.width;
         pct = Math.max(0, Math.min(1, pct));
         audio.currentTime = pct * audio.duration;
-        // Update UI immediately
         fpFill.style.width = (pct * 100) + '%';
         fpThumb.style.left = (pct * 100) + '%';
         fpCurrent.textContent = formatTime(pct * audio.duration);
-        fpPercent.textContent = Math.round(pct * 100) + '%';
       }
 
       fpProgress.addEventListener('mousedown', (e) => {
@@ -965,7 +991,6 @@
         isDragging = false;
       });
 
-      // Support tactile
       fpProgress.addEventListener('touchstart', (e) => {
         isDragging = true;
         updateProgressFromEvent(e);
@@ -979,7 +1004,6 @@
         isDragging = false;
       });
 
-      /* ---------- AUDIO EVENTS ---------- */
       audio.addEventListener('loadedmetadata', () => {
         fpDuration.textContent = formatTime(audio.duration);
         fpCurrent.textContent = '0:00';
@@ -992,7 +1016,6 @@
         fpFill.style.width = pct + '%';
         fpThumb.style.left = pct + '%';
         fpCurrent.textContent = formatTime(audio.currentTime);
-        fpPercent.textContent = Math.round(pct) + '%';
       });
 
       audio.addEventListener('ended', () => {
@@ -1000,19 +1023,16 @@
         fpFill.style.width = '0%';
         fpThumb.style.left = '0%';
         fpCurrent.textContent = '0:00';
-        fpPercent.textContent = '0%';
         resetTrackUI();
         currentTrackEl = null;
       });
 
-      /* ---------- ALBUMS ---------- */
       document.querySelectorAll('.album-item').forEach(el => {
         el.addEventListener('click', () => {
           alert('Album : ' + el.dataset.title + '\n\nPas encore de pistes ajoutées.');
         });
       });
 
-      /* ---------- ESC pour fermer ---------- */
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && fp.classList.contains('open')) closeFullscreen();
       });
