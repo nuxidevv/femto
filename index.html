@@ -21,7 +21,6 @@
       min-height: 100vh;
     }
 
-    /* CONTENEUR PRINCIPAL */
     .container {
       max-width: 1280px;
       margin: 0 auto;
@@ -30,7 +29,6 @@
       flex: 1;
     }
 
-    /* HEADER (logo uniquement) */
     header {
       display: flex;
       align-items: center;
@@ -57,7 +55,7 @@
       -webkit-text-fill-color: #7a7a7a;
     }
 
-    /* TABS (ONGLETS) */
+    /* TABS */
     .tabs {
       display: flex;
       flex-wrap: wrap;
@@ -89,7 +87,6 @@
     .tab-btn.active { background: #ffffff; color: #0a0a0a; }
     .tab-btn.active i { opacity: 1; }
 
-    /* CONTENU DES ONGLETS */
     .tab-content { display: none; animation: fadeIn 0.25s ease; }
     .tab-content.active { display: block; }
 
@@ -98,7 +95,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ARTISTE HEADER */
     .artist-header {
       display: flex;
       flex-wrap: wrap;
@@ -128,10 +124,7 @@
 
     .artist-meta i { margin-right: 0.3rem; }
 
-    /* FOLDER SECTION */
-    .folder-section {
-      margin-bottom: 2.5rem;
-    }
+    .folder-section { margin-bottom: 2.5rem; }
 
     .folder-title {
       font-size: 1.1rem;
@@ -145,10 +138,7 @@
       gap: 0.6rem;
     }
 
-    .folder-title i {
-      color: #6b6b6b;
-      font-size: 1rem;
-    }
+    .folder-title i { color: #6b6b6b; font-size: 1rem; }
 
     .folder-grid {
       display: grid;
@@ -156,7 +146,6 @@
       gap: 1.2rem;
     }
 
-    /* FOLDER ITEM */
     .folder-item {
       background: #111111;
       border-radius: 20px;
@@ -200,7 +189,74 @@
       font-weight: 500;
     }
 
-    /* ALBUM LIST (pour les albums listés) */
+    /* TRACK LIST (dans les dossiers) */
+    .track-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+
+    .track-item {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 0.8rem 1rem;
+      background: #111;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+      color: inherit;
+      width: 100%;
+      text-align: left;
+    }
+
+    .track-item:hover {
+      background: #181818;
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .track-item.playing {
+      background: #1a1a1a;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .track-play {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #fff;
+      color: #0a0a0a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+
+    .track-item:hover .track-play { transform: scale(1.06); }
+
+    .track-info { flex: 1; min-width: 0; }
+
+    .track-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #f0f0f0;
+      margin-bottom: 0.15rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .track-artist {
+      font-size: 0.78rem;
+      color: #7a7a7a;
+    }
+
+    /* ALBUM GRID */
     .album-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -252,7 +308,7 @@
       font-weight: 500;
     }
 
-    /* MODAL / VUE DOSSIER (simple overlay) */
+    /* OVERLAY */
     .folder-overlay {
       position: fixed;
       inset: 0;
@@ -276,6 +332,8 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
       position: relative;
       animation: fadeIn 0.2s ease;
+      max-height: 90vh;
+      overflow-y: auto;
     }
 
     .folder-panel-close {
@@ -301,7 +359,7 @@
       font-weight: 700;
     }
 
-    .folder-panel p {
+    .folder-panel p.sub {
       color: #888;
       margin-bottom: 1.5rem;
       font-size: 0.95rem;
@@ -329,7 +387,86 @@
       opacity: 0.6;
     }
 
-    /* À PROPOS (en bas) */
+    /* LECTEUR AUDIO CUSTOM */
+    .player {
+      background: #0f0f0f;
+      border-radius: 20px;
+      padding: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      margin-top: 0.5rem;
+    }
+
+    .player-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.2rem;
+    }
+
+    .player-artist {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 1.2rem;
+    }
+
+    .player-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .player-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #fff;
+      color: #0a0a0a;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .player-btn:hover { background: #d4d4d4; transform: scale(1.04); }
+
+    .player-progress {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: #2a2a2a;
+      border-radius: 3px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #fff, #b0b0b0);
+      border-radius: 3px;
+      transition: width 0.1s linear;
+    }
+
+    .progress-time {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: #7a7a7a;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* À PROPOS */
     .about-section {
       margin-top: 4rem;
       padding-top: 2.5rem;
@@ -357,7 +494,6 @@
 
     .about-text strong { color: #d0d0d0; font-weight: 600; }
 
-    /* FOOTER */
     footer {
       margin-top: 3rem;
       padding-top: 1.5rem;
@@ -369,7 +505,6 @@
 
     footer i { color: #5a5a5a; }
 
-    /* RESPONSIVE */
     @media (max-width: 640px) {
       .container { padding: 1.5rem 1rem; }
       .artist-name { font-size: 2.4rem; }
@@ -378,13 +513,13 @@
       .folder-grid, .album-grid { grid-template-columns: 1fr 1fr; }
       .folder-panel { padding: 1.8rem; }
       .folder-panel h3 { font-size: 1.3rem; }
+      .player-btn { width: 42px; height: 42px; }
     }
 
     @media (max-width: 420px) {
       .folder-grid, .album-grid { grid-template-columns: 1fr; }
     }
 
-    /* SCROLLBAR */
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: #0a0a0a; }
     ::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 10px; }
@@ -393,19 +528,17 @@
 </head>
 <body>
   <div class="container">
-    <!-- HEADER (logo uniquement) -->
     <header>
       <div class="logo">femto<span>.pedo</span></div>
     </header>
 
-    <!-- ONGLETS -->
     <div class="tabs">
       <button class="tab-btn active" data-tab="femtogo"><i class="fas fa-fire"></i> Femtogo</button>
       <button class="tab-btn" data-tab="baby-hayabusa"><i class="fas fa-bolt"></i> Baby Hayabusa</button>
       <button class="tab-btn" data-tab="reggie-petrucci"><i class="fas fa-guitar"></i> Reggie Petrucci</button>
     </div>
 
-    <!-- CONTENU ONGLET FEMTOGO -->
+    <!-- FEMTOGO -->
     <div id="femtogo" class="tab-content active">
       <div class="artist-header">
         <h1 class="artist-name">Femtogo</h1>
@@ -414,7 +547,6 @@
         </div>
       </div>
 
-      <!-- Dossiers : Archives, Leaks, Singles -->
       <div class="folder-section">
         <div class="folder-title"><i class="fas fa-folder-open"></i> Dossiers</div>
         <div class="folder-grid">
@@ -431,12 +563,25 @@
           <button class="folder-item" data-artist="Femtogo" data-folder="Singles">
             <div class="folder-icon"><i class="fas fa-music"></i></div>
             <div class="folder-name">Singles</div>
-            <div class="folder-count">Dossier · vide</div>
+            <div class="folder-count">Dossier · 1 titre</div>
           </button>
         </div>
       </div>
 
-      <!-- Albums de Femtogo -->
+      <!-- LISTE DES SINGLES VISIBLE DIRECTEMENT -->
+      <div class="folder-section">
+        <div class="folder-title"><i class="fas fa-music"></i> Singles</div>
+        <div class="track-list">
+          <button class="track-item" data-track-title="50BMG (ft. abel31)" data-track-artist="Femtogo feat. abel31" data-track-src="https://www.image2url.com/r2/default/audio/1790700289813-0e838c61-3923-480c-9b95-d856b090267a.mp3">
+            <div class="track-play"><i class="fas fa-play"></i></div>
+            <div class="track-info">
+              <div class="track-title">50BMG (ft. abel31)</div>
+              <div class="track-artist">Femtogo · 2026</div>
+            </div>
+          </button>
+        </div>
+      </div>
+
       <div class="folder-section">
         <div class="folder-title"><i class="fas fa-compact-disc"></i> Albums</div>
         <div class="album-grid">
@@ -479,7 +624,7 @@
       </div>
     </div>
 
-    <!-- CONTENU ONGLET BABY HAYABUSA -->
+    <!-- BABY HAYABUSA -->
     <div id="baby-hayabusa" class="tab-content">
       <div class="artist-header">
         <h1 class="artist-name">Baby Hayabusa</h1>
@@ -488,7 +633,6 @@
         </div>
       </div>
 
-      <!-- Dossiers : Leaks et Singles -->
       <div class="folder-section">
         <div class="folder-title"><i class="fas fa-folder-open"></i> Dossiers</div>
         <div class="folder-grid">
@@ -506,7 +650,7 @@
       </div>
     </div>
 
-    <!-- CONTENU ONGLET REGGIE PETRUCCI -->
+    <!-- REGGIE PETRUCCI -->
     <div id="reggie-petrucci" class="tab-content">
       <div class="artist-header">
         <h1 class="artist-name">Reggie Petrucci</h1>
@@ -515,7 +659,6 @@
         </div>
       </div>
 
-      <!-- Dossier : Singles -->
       <div class="folder-section">
         <div class="folder-title"><i class="fas fa-folder-open"></i> Dossiers</div>
         <div class="folder-grid">
@@ -527,7 +670,6 @@
         </div>
       </div>
 
-      <!-- Albums de Reggie Petrucci -->
       <div class="folder-section">
         <div class="folder-title"><i class="fas fa-compact-disc"></i> Albums</div>
         <div class="album-grid">
@@ -540,7 +682,7 @@
       </div>
     </div>
 
-    <!-- À PROPOS (en bas, généré) -->
+    <!-- À PROPOS -->
     <section class="about-section">
       <h2 class="about-title"><i class="fas fa-info-circle"></i> À propos</h2>
       <div class="about-text">
@@ -555,22 +697,23 @@
       </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
       <p><i class="fas fa-copyright"></i> 2026 femto.pedo · Tous droits réservés</p>
     </footer>
   </div>
 
-  <!-- OVERLAY POUR AFFICHER LE CONTENU D'UN DOSSIER / ALBUM -->
+  <!-- OVERLAY -->
   <div class="folder-overlay" id="folderOverlay">
     <div class="folder-panel">
       <button class="folder-panel-close" id="closeOverlay"><i class="fas fa-times"></i></button>
       <h3 id="overlayTitle">Dossier</h3>
-      <p id="overlaySubtitle">Artiste</p>
-      <div class="empty-box">
-        <i class="fas fa-folder-open"></i>
-        <p id="overlayEmptyText">Ce dossier est vide pour le moment.</p>
-        <small>Ajoute tes fichiers MP3 et infos ici.</small>
+      <p class="sub" id="overlaySubtitle">Artiste</p>
+      <div id="overlayContent">
+        <div class="empty-box">
+          <i class="fas fa-folder-open"></i>
+          <p id="overlayEmptyText">Ce dossier est vide pour le moment.</p>
+          <small>Ajoute tes fichiers MP3 et infos ici.</small>
+        </div>
       </div>
     </div>
   </div>
@@ -597,43 +740,201 @@
         btn.addEventListener('click', () => activateTab(btn.dataset.tab));
       });
 
-      /* ---------- OVERLAY DOSSIERS / ALBUMS ---------- */
+      /* ---------- OVERLAY ---------- */
       const overlay = document.getElementById('folderOverlay');
       const closeBtn = document.getElementById('closeOverlay');
       const overlayTitle = document.getElementById('overlayTitle');
       const overlaySubtitle = document.getElementById('overlaySubtitle');
+      const overlayContent = document.getElementById('overlayContent');
       const overlayEmptyText = document.getElementById('overlayEmptyText');
 
-      function openOverlay(artist, name, type) {
-        overlayTitle.textContent = name;
-        overlaySubtitle.textContent = artist + ' · ' + (type === 'album' ? 'Album' : 'Dossier');
-        if (type === 'album') {
-          overlayEmptyText.textContent = 'Cet album est vide pour le moment.';
-        } else {
-          overlayEmptyText.textContent = 'Ce dossier est vide pour le moment.';
+      // Lecteur audio global
+      let currentAudio = null;
+      let currentProgressFill = null;
+      let currentTimeEl = null;
+
+      function formatTime(sec) {
+        if (isNaN(sec)) return '0:00';
+        const m = Math.floor(sec / 60);
+        const s = Math.floor(sec % 60);
+        return m + ':' + (s < 10 ? '0' : '') + s;
+      }
+
+      function stopCurrentAudio() {
+        if (currentAudio) {
+          currentAudio.pause();
+          currentAudio = null;
+          currentProgressFill = null;
+          currentTimeEl = null;
         }
+        // Reset icônes de toutes les cartes track
+        document.querySelectorAll('.track-item').forEach(el => {
+          el.classList.remove('playing');
+          const icon = el.querySelector('.track-play i');
+          if (icon) icon.className = 'fas fa-play';
+        });
+      }
+
+      function buildPlayer(trackEl) {
+        const title = trackEl.dataset.trackTitle;
+        const artist = trackEl.dataset.trackArtist;
+        const src = trackEl.dataset.trackSrc;
+
+        overlayContent.innerHTML = `
+          <div class="player">
+            <div class="player-title">${title}</div>
+            <div class="player-artist">${artist}</div>
+            <div class="player-controls">
+              <button class="player-btn" id="playerToggle"><i class="fas fa-pause"></i></button>
+              <div class="player-progress">
+                <div class="progress-bar" id="progressBar">
+                  <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-time">
+                  <span id="currentTime">0:00</span>
+                  <span id="duration">0:00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+
+        const audio = new Audio(src);
+        audio.preload = 'metadata';
+        currentAudio = audio;
+
+        const toggleBtn = document.getElementById('playerToggle');
+        const toggleIcon = toggleBtn.querySelector('i');
+        const progressBar = document.getElementById('progressBar');
+        const progressFill = document.getElementById('progressFill');
+        const currentTimeEl = document.getElementById('currentTime');
+        const durationEl = document.getElementById('duration');
+
+        currentProgressFill = progressFill;
+        currentTimeEl = currentTimeEl;
+
+        audio.addEventListener('loadedmetadata', () => {
+          durationEl.textContent = formatTime(audio.duration);
+        });
+
+        audio.addEventListener('timeupdate', () => {
+          if (!audio.duration) return;
+          const pct = (audio.currentTime / audio.duration) * 100;
+          progressFill.style.width = pct + '%';
+          currentTimeEl.textContent = formatTime(audio.currentTime);
+        });
+
+        audio.addEventListener('ended', () => {
+          toggleIcon.className = 'fas fa-play';
+          progressFill.style.width = '0%';
+          currentTimeEl.textContent = '0:00';
+          const parentTrack = document.querySelector(`.track-item[data-track-src="${src}"]`);
+          if (parentTrack) {
+            parentTrack.classList.remove('playing');
+            const icon = parentTrack.querySelector('.track-play i');
+            if (icon) icon.className = 'fas fa-play';
+          }
+        });
+
+        toggleBtn.addEventListener('click', () => {
+          if (audio.paused) {
+            audio.play();
+            toggleIcon.className = 'fas fa-pause';
+          } else {
+            audio.pause();
+            toggleIcon.className = 'fas fa-play';
+          }
+        });
+
+        progressBar.addEventListener('click', (e) => {
+          const rect = progressBar.getBoundingClientRect();
+          const pct = (e.clientX - rect.left) / rect.width;
+          if (audio.duration) audio.currentTime = pct * audio.duration;
+        });
+
+        // Lancement automatique
+        audio.play().then(() => {
+          toggleIcon.className = 'fas fa-pause';
+        }).catch(() => {
+          toggleIcon.className = 'fas fa-play';
+        });
+      }
+
+      function openOverlay(artist, name, type, trackEl) {
+        // Stop l'audio précédent
+        stopCurrentAudio();
+
+        overlayTitle.textContent = name;
+        overlaySubtitle.textContent = artist + ' · ' + (type === 'album' ? 'Album' : (type === 'track' ? 'Single' : 'Dossier'));
+
+        if (type === 'track' && trackEl) {
+          buildPlayer(trackEl);
+        } else if (type === 'album') {
+          overlayContent.innerHTML = `
+            <div class="empty-box">
+              <i class="fas fa-compact-disc"></i>
+              <p>Cet album est vide pour le moment.</p>
+              <small>Ajoute tes fichiers MP3 et infos ici.</small>
+            </div>
+          `;
+        } else {
+          overlayContent.innerHTML = `
+            <div class="empty-box">
+              <i class="fas fa-folder-open"></i>
+              <p>Ce dossier est vide pour le moment.</p>
+              <small>Ajoute tes fichiers MP3 et infos ici.</small>
+            </div>
+          `;
+        }
+
         overlay.classList.add('open');
       }
 
       function closeOverlay() {
+        stopCurrentAudio();
         overlay.classList.remove('open');
+        // Restaurer contenu vide par défaut pour le prochain coup
+        setTimeout(() => {
+          if (!overlay.classList.contains('open')) {
+            overlayContent.innerHTML = `
+              <div class="empty-box">
+                <i class="fas fa-folder-open"></i>
+                <p id="overlayEmptyText">Ce dossier est vide pour le moment.</p>
+                <small>Ajoute tes fichiers MP3 et infos ici.</small>
+              </div>
+            `;
+          }
+        }, 250);
       }
 
       // Dossiers
       document.querySelectorAll('.folder-item').forEach(el => {
         el.addEventListener('click', () => {
-          const artist = el.dataset.artist;
-          const folder = el.dataset.folder;
-          openOverlay(artist, folder, 'folder');
+          openOverlay(el.dataset.artist, el.dataset.folder, 'folder');
         });
       });
 
       // Albums
       document.querySelectorAll('.album-item').forEach(el => {
         el.addEventListener('click', () => {
-          const artist = el.dataset.artist;
-          const album = el.dataset.album;
-          openOverlay(artist, album, 'album');
+          openOverlay(el.dataset.artist, el.dataset.album, 'album');
+        });
+      });
+
+      // Tracks (singles)
+      document.querySelectorAll('.track-item').forEach(el => {
+        el.addEventListener('click', () => {
+          // Marquer comme en cours
+          document.querySelectorAll('.track-item').forEach(t => {
+            t.classList.remove('playing');
+            const i = t.querySelector('.track-play i');
+            if (i) i.className = 'fas fa-play';
+          });
+          el.classList.add('playing');
+          const icon = el.querySelector('.track-play i');
+          if (icon) icon.className = 'fas fa-pause';
+
+          openOverlay('Femtogo', el.dataset.trackTitle, 'track', el);
         });
       });
 
@@ -646,7 +947,7 @@
         if (e.key === 'Escape' && overlay.classList.contains('open')) closeOverlay();
       });
 
-      /* ---------- OPTIONNEL : HASH POUR ONGLETS ---------- */
+      /* ---------- HASH ---------- */
       if (window.location.hash) {
         const hash = window.location.hash.substring(1);
         if (contents[hash]) activateTab(hash);
