@@ -510,6 +510,138 @@
     .fp-lyrics::-webkit-scrollbar-track { background: transparent; }
     .fp-lyrics::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 3px; }
 
+    /* ====== MINI PLAYER (barre en bas) ====== */
+    .mini-player {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #121212;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 0.7rem 1.2rem;
+      display: none;
+      align-items: center;
+      gap: 1rem;
+      z-index: 1500;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .mini-player.show { display: flex; }
+    .mini-player:hover { background: #181818; }
+
+    .mini-player-artwork {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: #1c1c1c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: #666;
+      flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .mini-player-info {
+      min-width: 0;
+      flex: 0 0 auto;
+      max-width: 180px;
+    }
+
+    .mini-player-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .mini-player-artist {
+      font-size: 0.75rem;
+      color: #888;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .mini-player-toggle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #fff;
+      color: #0a0a0a;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    .mini-player-toggle:hover { transform: scale(1.06); }
+
+    .mini-player-progress {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      min-width: 0;
+    }
+
+    .mini-progress-bar {
+      flex: 1;
+      height: 4px;
+      background: #2a2a2a;
+      border-radius: 2px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      min-width: 40px;
+    }
+
+    .mini-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: #fff;
+      border-radius: 2px;
+    }
+
+    .mini-progress-time {
+      font-size: 0.72rem;
+      color: #888;
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+      min-width: 70px;
+      text-align: right;
+    }
+
+    .mini-player-close {
+      background: transparent;
+      border: none;
+      color: #666;
+      font-size: 1rem;
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .mini-player-close:hover { color: #fff; background: rgba(255,255,255,0.06); }
+
+    body.has-player { padding-bottom: 80px; }
+
     .about-section {
       margin-top: 4rem;
       padding-top: 2.5rem;
@@ -566,6 +698,11 @@
       .fp-artwork { font-size: 4rem; max-width: 260px; }
       .fp-btn-main { width: 64px; height: 64px; font-size: 1.4rem; }
       .fp-buttons { gap: 1rem; }
+      .mini-player { padding: 0.6rem 0.8rem; gap: 0.7rem; }
+      .mini-player-info { max-width: 100px; }
+      .mini-player-artwork { width: 38px; height: 38px; }
+      .mini-player-toggle { width: 36px; height: 36px; }
+      .mini-progress-time { display: none; }
     }
 
     ::-webkit-scrollbar { width: 8px; }
@@ -826,7 +963,7 @@ Je t'ai dit &quot;la vie t'attend&quot;, et t'as bien vu qu'elle s'y perd">
   <div class="fullscreen-player" id="fullscreenPlayer">
     <div class="fp-top">
       <div class="fp-label"><i class="fas fa-headphones"></i> Lecture en cours</div>
-      <button class="fp-close" id="fpClose"><i class="fas fa-times"></i></button>
+      <button class="fp-close" id="fpClose"><i class="fas fa-chevron-down"></i></button>
     </div>
 
     <div class="fp-body">
@@ -864,6 +1001,23 @@ Je t'ai dit &quot;la vie t'attend&quot;, et t'as bien vu qu'elle s'y perd">
     </div>
   </div>
 
+  <!-- MINI PLAYER (barre en bas) -->
+  <div class="mini-player" id="miniPlayer">
+    <div class="mini-player-artwork"><i class="fas fa-compact-disc"></i></div>
+    <div class="mini-player-info">
+      <div class="mini-player-title" id="miniTitle">—</div>
+      <div class="mini-player-artist" id="miniArtist">—</div>
+    </div>
+    <button class="mini-player-toggle" id="miniToggle"><i class="fas fa-play"></i></button>
+    <div class="mini-player-progress">
+      <div class="mini-progress-bar" id="miniBar">
+        <div class="mini-progress-fill" id="miniFill"></div>
+      </div>
+      <div class="mini-progress-time" id="miniTime">0:00 / 0:00</div>
+    </div>
+    <button class="mini-player-close" id="miniClose" title="Arrêter"><i class="fas fa-times"></i></button>
+  </div>
+
   <script>
     (function() {
       const tabs = document.querySelectorAll('.tab-btn');
@@ -885,6 +1039,7 @@ Je t'ai dit &quot;la vie t'attend&quot;, et t'as bien vu qu'elle s'y perd">
       const audio = new Audio();
       audio.preload = 'metadata';
 
+      /* Fullscreen refs */
       const fp = document.getElementById('fullscreenPlayer');
       const fpClose = document.getElementById('fpClose');
       const fpTitle = document.getElementById('fpTitle');
@@ -899,6 +1054,17 @@ Je t'ai dit &quot;la vie t'attend&quot;, et t'as bien vu qu'elle s'y perd">
       const fpLyrics = document.getElementById('fpLyrics');
       const fpBackward = document.getElementById('fpBackward');
       const fpForward = document.getElementById('fpForward');
+
+      /* Mini player refs */
+      const miniPlayer = document.getElementById('miniPlayer');
+      const miniTitle = document.getElementById('miniTitle');
+      const miniArtist = document.getElementById('miniArtist');
+      const miniToggle = document.getElementById('miniToggle');
+      const miniToggleIcon = miniToggle.querySelector('i');
+      const miniBar = document.getElementById('miniBar');
+      const miniFill = document.getElementById('miniFill');
+      const miniTime = document.getElementById('miniTime');
+      const miniClose = document.getElementById('miniClose');
 
       let currentTrackEl = null;
 
@@ -927,14 +1093,35 @@ Je t'ai dit &quot;la vie t'attend&quot;, et t'as bien vu qu'elle s'y perd">
         }
       }
 
+      /* ---------- OUVERTURE / FERMETURE PLEIN ÉCRAN ---------- */
       function openFullscreen() {
         fp.classList.add('open');
+        miniPlayer.classList.remove('show');
         document.body.style.overflow = 'hidden';
       }
 
-      function closeFullscreen() {
+      function minimizePlayer() {
         fp.classList.remove('open');
         document.body.style.overflow = '';
+        // Affiche la mini barre si une piste est chargée
+        if (audio.src) {
+          miniPlayer.classList.add('show');
+          document.body.classList.add('has-player');
+        }
+      }
+
+      function stopAndHideAll() {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.src = '';
+        fp.classList.remove('open');
+        miniPlayer.classList.remove('show');
+        document.body.classList.remove('has-player');
+        document.body.style.overflow = '';
+        resetTrackUI();
+        currentTrackEl = null;
+        fpToggleIcon.className = 'fas fa-play';
+        miniToggleIcon.className = 'fas fa-play';
       }
 
       function loadLyrics(text) {
@@ -956,13 +1143,18 @@ Je t'ai dit &quot;la vie t'attend&quot;, et t'as bien vu qu'elle s'y perd">
 
         if (!src) return;
 
+        // Mise à jour des infos partout
         fpTitle.textContent = title;
         fpArtist.textContent = artist;
+        miniTitle.textContent = title;
+        miniArtist.textContent = artist;
         loadLyrics(lyrics);
 
         fpFill.style.width = '0%';
         fpThumb.style.left = '0%';
         fpCurrent.textContent = '0:00';
+        miniFill.style.width = '0%';
+        miniTime.textContent = '0:00 / 0:00';
 
         audio.src = src;
         audio.load();
@@ -974,9 +1166,11 @@ Je t'ai dit &quot;la vie t'attend&quot;, et t'as bien vu qu'elle s'y perd">
         if (playPromise !== undefined) {
           playPromise.then(() => {
             fpToggleIcon.className = 'fas fa-pause';
+            miniToggleIcon.className = 'fas fa-pause';
           }).catch(err => {
             console.warn('Lecture bloquée :', err);
             fpToggleIcon.className = 'fas fa-play';
+            miniToggleIcon.className = 'fas fa-play';
           });
         }
       }
@@ -985,13 +1179,16 @@ Je t'ai dit &quot;la vie t'attend&quot;, et t'as bien vu qu'elle s'y perd">
         el.addEventListener('click', () => playTrack(el));
       });
 
-      fpClose.addEventListener('click', closeFullscreen);
+      /* ---------- FERMETURE → MINIMISE ---------- */
+      fpClose.addEventListener('click', minimizePlayer);
 
+      /* ---------- TOGGLE PLAY/PAUSE (plein écran) ---------- */
       fpToggle.addEventListener('click', () => {
         if (!audio.src) return;
         if (audio.paused) {
           audio.play().then(() => {
             fpToggleIcon.className = 'fas fa-pause';
+            miniToggleIcon.className = 'fas fa-pause';
             if (currentTrackEl) {
               currentTrackEl.classList.add('playing');
               const icon = currentTrackEl.querySelector('.track-play i');
@@ -1001,6 +1198,7 @@ Je t'ai dit &quot;la vie t'attend&quot;, et t'as bien vu qu'elle s'y perd">
         } else {
           audio.pause();
           fpToggleIcon.className = 'fas fa-play';
+          miniToggleIcon.className = 'fas fa-play';
           if (currentTrackEl) {
             const icon = currentTrackEl.querySelector('.track-play i');
             if (icon) icon.className = 'fas fa-play';
@@ -1008,6 +1206,45 @@ Je t'ai dit &quot;la vie t'attend&quot;, et t'as bien vu qu'elle s'y perd">
         }
       });
 
+      /* ---------- TOGGLE PLAY/PAUSE (mini) ---------- */
+      miniToggle.addEventListener('click', (e) => {
+        e.stopPropagation(); // évite d'ouvrir le plein écran
+        if (!audio.src) return;
+        if (audio.paused) {
+          audio.play().then(() => {
+            fpToggleIcon.className = 'fas fa-pause';
+            miniToggleIcon.className = 'fas fa-pause';
+          });
+        } else {
+          audio.pause();
+          fpToggleIcon.className = 'fas fa-play';
+          miniToggleIcon.className = 'fas fa-play';
+        }
+      });
+
+      /* ---------- CLIC SUR LA MINI BARRE → plein écran ---------- */
+      miniPlayer.addEventListener('click', (e) => {
+        // Ignore si on clique sur les contrôles
+        if (e.target.closest('#miniToggle') || e.target.closest('#miniClose') || e.target.closest('#miniBar')) return;
+        openFullscreen();
+      });
+
+      /* ---------- FERMER / ARRÊTER DEPUIS LA MINI ---------- */
+      miniClose.addEventListener('click', (e) => {
+        e.stopPropagation();
+        stopAndHideAll();
+      });
+
+      /* ---------- SEEK MINI ---------- */
+      miniBar.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (!audio.duration) return;
+        const rect = miniBar.getBoundingClientRect();
+        const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        audio.currentTime = pct * audio.duration;
+      });
+
+      /* ---------- -10s / +10s ---------- */
       fpBackward.addEventListener('click', () => {
         if (audio.src) audio.currentTime = Math.max(0, audio.currentTime - 10);
       });
@@ -1018,6 +1255,7 @@ Je t'ai dit &quot;la vie t'attend&quot;, et t'as bien vu qu'elle s'y perd">
         }
       });
 
+      /* ---------- SEEK PLEIN ÉCRAN ---------- */
       let isDragging = false;
 
       function updateProgressFromEvent(e) {
@@ -1058,37 +1296,51 @@ Je t'ai dit &quot;la vie t'attend&quot;, et t'as bien vu qu'elle s'y perd">
         isDragging = false;
       });
 
+      /* ---------- AUDIO EVENTS ---------- */
       audio.addEventListener('loadedmetadata', () => {
         fpDuration.textContent = formatTime(audio.duration);
         fpCurrent.textContent = '0:00';
+        miniTime.textContent = '0:00 / ' + formatTime(audio.duration);
       });
 
       audio.addEventListener('timeupdate', () => {
         if (!audio.duration) return;
-        if (isDragging) return;
         const pct = (audio.currentTime / audio.duration) * 100;
-        fpFill.style.width = pct + '%';
-        fpThumb.style.left = pct + '%';
-        fpCurrent.textContent = formatTime(audio.currentTime);
+
+        // Plein écran (sauf si on drag)
+        if (!isDragging) {
+          fpFill.style.width = pct + '%';
+          fpThumb.style.left = pct + '%';
+          fpCurrent.textContent = formatTime(audio.currentTime);
+        }
+
+        // Mini player toujours
+        miniFill.style.width = pct + '%';
+        miniTime.textContent = formatTime(audio.currentTime) + ' / ' + formatTime(audio.duration);
       });
 
       audio.addEventListener('ended', () => {
         fpToggleIcon.className = 'fas fa-play';
+        miniToggleIcon.className = 'fas fa-play';
         fpFill.style.width = '0%';
         fpThumb.style.left = '0%';
         fpCurrent.textContent = '0:00';
+        miniFill.style.width = '0%';
+        miniTime.textContent = '0:00 / ' + formatTime(audio.duration);
         resetTrackUI();
         currentTrackEl = null;
       });
 
+      /* ---------- ALBUMS ---------- */
       document.querySelectorAll('.album-item').forEach(el => {
         el.addEventListener('click', () => {
           alert('Album : ' + el.dataset.title + '\n\nPas encore de pistes ajoutées.');
         });
       });
 
+      /* ---------- ESC ---------- */
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && fp.classList.contains('open')) closeFullscreen();
+        if (e.key === 'Escape' && fp.classList.contains('open')) minimizePlayer();
       });
 
     })();
