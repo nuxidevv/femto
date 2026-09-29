@@ -3,16 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>femtogo.pedo</title>
-  <!-- Font Awesome 6 (icônes) -->
+  <title>femto.pedo</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     /* RESET & BASE */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
 
     body {
       background: #0a0a0a;
@@ -24,9 +21,6 @@
       min-height: 100vh;
     }
 
-    /* Importation de la police Inter */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
-
     /* CONTENEUR PRINCIPAL */
     .container {
       max-width: 1280px;
@@ -36,54 +30,31 @@
       flex: 1;
     }
 
-    /* HEADER */
+    /* HEADER (logo uniquement) */
     header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
+      justify-content: center;
       margin-bottom: 3rem;
-      padding-bottom: 1rem;
+      padding-bottom: 1.5rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .logo {
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 700;
       letter-spacing: -0.03em;
       background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      text-align: center;
     }
 
     .logo span {
       font-weight: 300;
       color: #7a7a7a;
       -webkit-text-fill-color: #7a7a7a;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.8rem;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: #aaa;
-    }
-
-    .nav-links a {
-      color: #aaa;
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-
-    .nav-links a:hover {
-      color: #fff;
-    }
-
-    .nav-links i {
-      margin-right: 0.4rem;
     }
 
     /* TABS (ONGLETS) */
@@ -113,34 +84,14 @@
       gap: 0.5rem;
     }
 
-    .tab-btn i {
-      font-size: 1rem;
-      opacity: 0.7;
-    }
-
-    .tab-btn:hover {
-      color: #e0e0e0;
-      background: rgba(255, 255, 255, 0.03);
-    }
-
-    .tab-btn.active {
-      background: #ffffff;
-      color: #0a0a0a;
-    }
-
-    .tab-btn.active i {
-      opacity: 1;
-    }
+    .tab-btn i { font-size: 1rem; opacity: 0.7; }
+    .tab-btn:hover { color: #e0e0e0; background: rgba(255, 255, 255, 0.03); }
+    .tab-btn.active { background: #ffffff; color: #0a0a0a; }
+    .tab-btn.active i { opacity: 1; }
 
     /* CONTENU DES ONGLETS */
-    .tab-content {
-      display: none;
-      animation: fadeIn 0.25s ease;
-    }
-
-    .tab-content.active {
-      display: block;
-    }
+    .tab-content { display: none; animation: fadeIn 0.25s ease; }
+    .tab-content.active { display: block; }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(6px); }
@@ -175,208 +126,276 @@
       font-size: 0.95rem;
     }
 
-    .artist-meta i {
-      margin-right: 0.3rem;
+    .artist-meta i { margin-right: 0.3rem; }
+
+    /* FOLDER SECTION */
+    .folder-section {
+      margin-bottom: 2.5rem;
     }
 
-    /* GRILLE DE SORTIES (SINGLES / ALBUMS) */
-    .releases-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.8rem;
-      margin-top: 1rem;
-    }
-
-    .release-card {
-      background: #111111;
-      border-radius: 24px;
-      padding: 1.5rem 1.5rem 1.8rem;
-      transition: transform 0.25s ease, background 0.2s ease;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .release-card:hover {
-      background: #181818;
-      transform: translateY(-4px);
-      border-color: rgba(255, 255, 255, 0.1);
-    }
-
-    .release-cover {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      background: #1e1e1e;
-      border-radius: 16px;
-      margin-bottom: 1.2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #3a3a3a;
-      font-size: 3rem;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .release-cover i {
-      opacity: 0.5;
-    }
-
-    .release-title {
-      font-size: 1.35rem;
+    .folder-title {
+      font-size: 1.1rem;
       font-weight: 600;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.3rem;
-      color: #fff;
-    }
-
-    .release-type {
-      font-size: 0.75rem;
+      color: #b0b0b0;
       text-transform: uppercase;
       letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .folder-title i {
+      color: #6b6b6b;
+      font-size: 1rem;
+    }
+
+    .folder-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.2rem;
+    }
+
+    /* FOLDER ITEM */
+    .folder-item {
+      background: #111111;
+      border-radius: 20px;
+      padding: 1.4rem 1.4rem 1.6rem;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      font-family: inherit;
+      color: inherit;
+      width: 100%;
+    }
+
+    .folder-item:hover {
+      background: #181818;
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .folder-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #e0e0e0;
+      opacity: 0.85;
+    }
+
+    .folder-name {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #f0f0f0;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.3rem;
+    }
+
+    .folder-count {
+      font-size: 0.8rem;
       color: #6b6b6b;
       font-weight: 500;
-      margin-bottom: 0.75rem;
     }
 
-    .release-info {
+    /* ALBUM LIST (pour les albums listés) */
+    .album-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .album-item {
+      background: #111111;
+      border-radius: 20px;
+      padding: 1.4rem 1.4rem 1.6rem;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      cursor: pointer;
+      transition: all 0.25s ease;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: #888;
-      font-size: 0.9rem;
-      margin-top: 0.5rem;
-      padding-top: 0.9rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      font-family: inherit;
+      color: inherit;
     }
 
-    .release-info i {
-      margin-right: 0.4rem;
-      font-size: 0.8rem;
+    .album-item:hover {
+      background: #181818;
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.12);
     }
 
-    .play-btn {
-      background: #fff;
-      color: #0a0a0a;
-      border: none;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
+    .album-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #e0e0e0;
+      opacity: 0.85;
+    }
+
+    .album-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #f0f0f0;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.3rem;
+      text-transform: uppercase;
+    }
+
+    .album-type {
+      font-size: 0.75rem;
+      color: #6b6b6b;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+    }
+
+    /* MODAL / VUE DOSSIER (simple overlay) */
+    .folder-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      display: none;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      opacity: 0.9;
+      z-index: 1000;
+      padding: 1.5rem;
     }
 
-    .play-btn:hover {
-      background: #d4d4d4;
-      transform: scale(1.05);
-      opacity: 1;
-    }
+    .folder-overlay.open { display: flex; }
 
-    /* ÉTAT VIDE / PLACEHOLDER */
-    .placeholder-message {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 4rem 2rem;
-      background: #111;
+    .folder-panel {
+      background: #141414;
       border-radius: 28px;
+      padding: 2.5rem;
+      max-width: 640px;
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .folder-panel-close {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      background: transparent;
+      border: none;
+      color: #888;
+      font-size: 1.3rem;
+      cursor: pointer;
+      padding: 0.4rem;
+      border-radius: 50%;
+      transition: all 0.2s;
+    }
+
+    .folder-panel-close:hover { color: #fff; background: rgba(255,255,255,0.05); }
+
+    .folder-panel h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .folder-panel p {
+      color: #888;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .empty-box {
+      background: #0f0f0f;
+      border-radius: 16px;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
       border: 1px dashed rgba(255, 255, 255, 0.08);
       color: #666;
     }
 
-    .placeholder-message i {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      opacity: 0.3;
+    .empty-box i {
+      font-size: 2.2rem;
+      margin-bottom: 0.8rem;
+      opacity: 0.4;
     }
 
-    .placeholder-message p {
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .placeholder-message small {
-      font-size: 0.9rem;
+    .empty-box small {
+      display: block;
+      margin-top: 0.4rem;
+      font-size: 0.8rem;
       opacity: 0.6;
     }
 
+    /* À PROPOS (en bas) */
+    .about-section {
+      margin-top: 4rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .about-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .about-title i { color: #6b6b6b; font-size: 1.1rem; }
+
+    .about-text {
+      color: #9a9a9a;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 780px;
+    }
+
+    .about-text strong { color: #d0d0d0; font-weight: 600; }
+
     /* FOOTER */
     footer {
-      margin-top: 4rem;
-      padding-top: 2rem;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
       text-align: center;
       color: #4a4a4a;
       font-size: 0.85rem;
       border-top: 1px solid rgba(255, 255, 255, 0.04);
     }
 
-    footer i {
-      color: #5a5a5a;
-    }
+    footer i { color: #5a5a5a; }
 
     /* RESPONSIVE */
     @media (max-width: 640px) {
-      .container {
-        padding: 1.5rem 1rem;
-      }
-
-      .artist-name {
-        font-size: 2.4rem;
-      }
-
-      .tab-btn {
-        font-size: 1rem;
-        padding: 0.5rem 1rem;
-      }
-
-      .tabs {
-        gap: 0.4rem;
-      }
-
-      .releases-grid {
-        grid-template-columns: 1fr;
-      }
-
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav-links {
-        width: 100%;
-        justify-content: flex-start;
-      }
+      .container { padding: 1.5rem 1rem; }
+      .artist-name { font-size: 2.4rem; }
+      .tab-btn { font-size: 1rem; padding: 0.5rem 1rem; }
+      .tabs { gap: 0.4rem; }
+      .folder-grid, .album-grid { grid-template-columns: 1fr 1fr; }
+      .folder-panel { padding: 1.8rem; }
+      .folder-panel h3 { font-size: 1.3rem; }
     }
 
-    /* STYLE POUR LA BARRE DE DÉFILEMENT (optionnel) */
-    ::-webkit-scrollbar {
-      width: 8px;
+    @media (max-width: 420px) {
+      .folder-grid, .album-grid { grid-template-columns: 1fr; }
     }
-    ::-webkit-scrollbar-track {
-      background: #0a0a0a;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #2a2a2a;
-      border-radius: 10px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #3a3a3a;
-    }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #3a3a3a; }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- HEADER -->
+    <!-- HEADER (logo uniquement) -->
     <header>
-      <div class="logo">tROIS<span>.id</span></div>
-      <div class="nav-links">
-        <a href="#"><i class="fas fa-music"></i> Sorties</a>
-        <a href="#"><i class="fas fa-user"></i> Artistes</a>
-        <a href="#"><i class="fas fa-info-circle"></i> À propos</a>
-      </div>
+      <div class="logo">femto<span>.pedo</span></div>
     </header>
 
     <!-- ONGLETS -->
@@ -391,35 +410,71 @@
       <div class="artist-header">
         <h1 class="artist-name">Femtogo</h1>
         <div class="artist-meta">
-          <span><i class="fas fa-headphones"></i> 3 sorties</span>
-          <span><i class="fas fa-calendar-alt"></i> 2025</span>
+          <span><i class="fas fa-folder"></i> Dossiers</span>
         </div>
       </div>
-      <div class="releases-grid">
-        <!-- Carte exemple (sera remplacée par tes singles) -->
-        <div class="release-card">
-          <div class="release-cover"><i class="fas fa-compact-disc"></i></div>
-          <div class="release-title">Nouveau single</div>
-          <div class="release-type">Single</div>
-          <div class="release-info">
-            <span><i class="far fa-clock"></i> 2025</span>
-            <button class="play-btn" aria-label="Play"><i class="fas fa-play"></i></button>
-          </div>
+
+      <!-- Dossiers : Archives, Leaks, Singles -->
+      <div class="folder-section">
+        <div class="folder-title"><i class="fas fa-folder-open"></i> Dossiers</div>
+        <div class="folder-grid">
+          <button class="folder-item" data-artist="Femtogo" data-folder="Archives">
+            <div class="folder-icon"><i class="fas fa-box-archive"></i></div>
+            <div class="folder-name">Archives</div>
+            <div class="folder-count">Dossier · vide</div>
+          </button>
+          <button class="folder-item" data-artist="Femtogo" data-folder="Leaks">
+            <div class="folder-icon"><i class="fas fa-eye-slash"></i></div>
+            <div class="folder-name">Leaks</div>
+            <div class="folder-count">Dossier · vide</div>
+          </button>
+          <button class="folder-item" data-artist="Femtogo" data-folder="Singles">
+            <div class="folder-icon"><i class="fas fa-music"></i></div>
+            <div class="folder-name">Singles</div>
+            <div class="folder-count">Dossier · vide</div>
+          </button>
         </div>
-        <div class="release-card">
-          <div class="release-cover"><i class="fas fa-compact-disc"></i></div>
-          <div class="release-title">Titre à venir</div>
-          <div class="release-type">EP</div>
-          <div class="release-info">
-            <span><i class="far fa-clock"></i> Bientôt</span>
-            <button class="play-btn" aria-label="Play"><i class="fas fa-play"></i></button>
-          </div>
-        </div>
-        <!-- Message placeholder (à retirer quand tu ajoutes les vrais morceaux) -->
-        <div class="placeholder-message">
-          <i class="fas fa-plus-circle"></i>
-          <p>Les singles et albums de Femtogo apparaîtront ici.</p>
-          <small>Ajoute tes fichiers mp3 et infos.</small>
+      </div>
+
+      <!-- Albums de Femtogo -->
+      <div class="folder-section">
+        <div class="folder-title"><i class="fas fa-compact-disc"></i> Albums</div>
+        <div class="album-grid">
+          <button class="album-item" data-artist="Femtogo" data-album="BRAVO 6">
+            <div class="album-icon"><i class="fas fa-compact-disc"></i></div>
+            <div class="album-name">BRAVO 6</div>
+            <div class="album-type">Album</div>
+          </button>
+          <button class="album-item" data-artist="Femtogo" data-album="CLOSED CHAPTER">
+            <div class="album-icon"><i class="fas fa-compact-disc"></i></div>
+            <div class="album-name">CLOSED CHAPTER</div>
+            <div class="album-type">Album</div>
+          </button>
+          <button class="album-item" data-artist="Femtogo" data-album="FRANCS TIREURS PARTISANS">
+            <div class="album-icon"><i class="fas fa-compact-disc"></i></div>
+            <div class="album-name">FRANCS TIREURS PARTISANS</div>
+            <div class="album-type">Album</div>
+          </button>
+          <button class="album-item" data-artist="Femtogo" data-album="La Bête">
+            <div class="album-icon"><i class="fas fa-compact-disc"></i></div>
+            <div class="album-name">La Bête</div>
+            <div class="album-type">Album</div>
+          </button>
+          <button class="album-item" data-artist="Femtogo" data-album="NAMELESS BELLIGERENT">
+            <div class="album-icon"><i class="fas fa-compact-disc"></i></div>
+            <div class="album-name">NAMELESS BELLIGERENT</div>
+            <div class="album-type">Album</div>
+          </button>
+          <button class="album-item" data-artist="Femtogo" data-album="One Man Army">
+            <div class="album-icon"><i class="fas fa-compact-disc"></i></div>
+            <div class="album-name">One Man Army</div>
+            <div class="album-type">Album</div>
+          </button>
+          <button class="album-item" data-artist="Femtogo" data-album="PRETTY DOLLCORPSE">
+            <div class="album-icon"><i class="fas fa-compact-disc"></i></div>
+            <div class="album-name">PRETTY DOLLCORPSE</div>
+            <div class="album-type">Album</div>
+          </button>
         </div>
       </div>
     </div>
@@ -429,24 +484,24 @@
       <div class="artist-header">
         <h1 class="artist-name">Baby Hayabusa</h1>
         <div class="artist-meta">
-          <span><i class="fas fa-headphones"></i> 2 sorties</span>
-          <span><i class="fas fa-calendar-alt"></i> 2025</span>
+          <span><i class="fas fa-folder"></i> Dossiers</span>
         </div>
       </div>
-      <div class="releases-grid">
-        <div class="release-card">
-          <div class="release-cover"><i class="fas fa-compact-disc"></i></div>
-          <div class="release-title">Hayabusa Flow</div>
-          <div class="release-type">Single</div>
-          <div class="release-info">
-            <span><i class="far fa-clock"></i> 2025</span>
-            <button class="play-btn" aria-label="Play"><i class="fas fa-play"></i></button>
-          </div>
-        </div>
-        <div class="placeholder-message">
-          <i class="fas fa-plus-circle"></i>
-          <p>Les projets de Baby Hayabusa seront ajoutés ici.</p>
-          <small>Prêt pour tes MP3 et pochettes.</small>
+
+      <!-- Dossiers : Leaks et Singles -->
+      <div class="folder-section">
+        <div class="folder-title"><i class="fas fa-folder-open"></i> Dossiers</div>
+        <div class="folder-grid">
+          <button class="folder-item" data-artist="Baby Hayabusa" data-folder="Leaks">
+            <div class="folder-icon"><i class="fas fa-eye-slash"></i></div>
+            <div class="folder-name">Leaks</div>
+            <div class="folder-count">Dossier · vide</div>
+          </button>
+          <button class="folder-item" data-artist="Baby Hayabusa" data-folder="Singles">
+            <div class="folder-icon"><i class="fas fa-music"></i></div>
+            <div class="folder-name">Singles</div>
+            <div class="folder-count">Dossier · vide</div>
+          </button>
         </div>
       </div>
     </div>
@@ -456,38 +511,77 @@
       <div class="artist-header">
         <h1 class="artist-name">Reggie Petrucci</h1>
         <div class="artist-meta">
-          <span><i class="fas fa-headphones"></i> 1 sortie</span>
-          <span><i class="fas fa-calendar-alt"></i> 2025</span>
+          <span><i class="fas fa-folder"></i> Dossiers</span>
         </div>
       </div>
-      <div class="releases-grid">
-        <div class="release-card">
-          <div class="release-cover"><i class="fas fa-compact-disc"></i></div>
-          <div class="release-title">Petrucci's Groove</div>
-          <div class="release-type">Single</div>
-          <div class="release-info">
-            <span><i class="far fa-clock"></i> 2025</span>
-            <button class="play-btn" aria-label="Play"><i class="fas fa-play"></i></button>
-          </div>
+
+      <!-- Dossier : Singles -->
+      <div class="folder-section">
+        <div class="folder-title"><i class="fas fa-folder-open"></i> Dossiers</div>
+        <div class="folder-grid">
+          <button class="folder-item" data-artist="Reggie Petrucci" data-folder="Singles">
+            <div class="folder-icon"><i class="fas fa-music"></i></div>
+            <div class="folder-name">Singles</div>
+            <div class="folder-count">Dossier · vide</div>
+          </button>
         </div>
-        <div class="placeholder-message">
-          <i class="fas fa-plus-circle"></i>
-          <p>Les morceaux de Reggie Petrucci seront listés ici.</p>
-          <small>Ajoute tes fichiers audio et métadonnées.</small>
+      </div>
+
+      <!-- Albums de Reggie Petrucci -->
+      <div class="folder-section">
+        <div class="folder-title"><i class="fas fa-compact-disc"></i> Albums</div>
+        <div class="album-grid">
+          <button class="album-item" data-artist="Reggie Petrucci" data-album="CONFESSIONAL INTOXICATION">
+            <div class="album-icon"><i class="fas fa-compact-disc"></i></div>
+            <div class="album-name">CONFESSIONAL INTOXICATION</div>
+            <div class="album-type">Album</div>
+          </button>
         </div>
       </div>
     </div>
 
+    <!-- À PROPOS (en bas, généré) -->
+    <section class="about-section">
+      <h2 class="about-title"><i class="fas fa-info-circle"></i> À propos</h2>
+      <div class="about-text">
+        <p>
+          <strong>femto.pedo</strong> est un collectif musical indépendant réunissant <strong>Femtogo</strong>, <strong>Baby Hayabusa</strong> et <strong>Reggie Petrucci</strong>. 
+          Ce site est une archive vivante de leurs sorties : singles, albums, leaks et archives rares, organisés par artiste et par dossier.
+        </p>
+        <p style="margin-top: 0.8rem;">
+          Chaque dossier est prêt à accueillir les fichiers audio et les métadonnées des morceaux. 
+          Les albums listés (BRAVO 6, CLOSED CHAPTER, FRANCS TIREURS PARTISANS, La Bête, NAMELESS BELLIGERENT, One Man Army, PRETTY DOLLCORPSE, CONFESSIONAL INTOXICATION) 
+          seront remplis progressivement avec les titres, pochettes et informations.
+        </p>
+        <p style="margin-top: 0.8rem; font-size: 0.85rem; color: #6b6b6b;">
+          Design minimaliste, navigation par onglets, contenu en cours d'ajout. Reviens bientôt pour les nouvelles sorties.
+        </p>
+      </div>
+    </section>
+
     <!-- FOOTER -->
     <footer>
       <p><i class="fas fa-copyright"></i> 2025 tROIS · Tous droits réservés</p>
-      <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.5;">Design sobre &amp; efficace — prêt pour tes sorties</p>
     </footer>
   </div>
 
-  <!-- SCRIPT POUR LES ONGLETS -->
+  <!-- OVERLAY POUR AFFICHER LE CONTENU D'UN DOSSIER / ALBUM -->
+  <div class="folder-overlay" id="folderOverlay">
+    <div class="folder-panel">
+      <button class="folder-panel-close" id="closeOverlay"><i class="fas fa-times"></i></button>
+      <h3 id="overlayTitle">Dossier</h3>
+      <p id="overlaySubtitle">Artiste</p>
+      <div class="empty-box">
+        <i class="fas fa-folder-open"></i>
+        <p id="overlayEmptyText">Ce dossier est vide pour le moment.</p>
+        <small>Ajoute tes fichiers MP3 et infos ici.</small>
+      </div>
+    </div>
+  </div>
+
   <script>
     (function() {
+      /* ---------- ONGLETS ---------- */
       const tabs = document.querySelectorAll('.tab-btn');
       const contents = {
         'femtogo': document.getElementById('femtogo'),
@@ -495,45 +589,72 @@
         'reggie-petrucci': document.getElementById('reggie-petrucci')
       };
 
-      // Fonction pour activer un onglet
       function activateTab(tabId) {
-        // Retirer active de tous les boutons et contenus
         tabs.forEach(btn => btn.classList.remove('active'));
-        Object.values(contents).forEach(content => content.classList.remove('active'));
-
-        // Ajouter active au bon bouton
-        const activeBtn = Array.from(tabs).find(btn => btn.dataset.tab === tabId);
+        Object.values(contents).forEach(c => c.classList.remove('active'));
+        const activeBtn = Array.from(tabs).find(b => b.dataset.tab === tabId);
         if (activeBtn) activeBtn.classList.add('active');
-
-        // Afficher le bon contenu
         if (contents[tabId]) contents[tabId].classList.add('active');
       }
 
-      // Ajouter les écouteurs d'événements
       tabs.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const tabId = btn.dataset.tab;
-          activateTab(tabId);
-        });
+        btn.addEventListener('click', () => activateTab(btn.dataset.tab));
       });
 
-      // Optionnel : garder l'onglet actif si on recharge avec un hash
-      // (simple bonus)
-      if (window.location.hash) {
-        const hash = window.location.hash.substring(1);
-        if (contents[hash]) {
-          activateTab(hash);
+      /* ---------- OVERLAY DOSSIERS / ALBUMS ---------- */
+      const overlay = document.getElementById('folderOverlay');
+      const closeBtn = document.getElementById('closeOverlay');
+      const overlayTitle = document.getElementById('overlayTitle');
+      const overlaySubtitle = document.getElementById('overlaySubtitle');
+      const overlayEmptyText = document.getElementById('overlayEmptyText');
+
+      function openOverlay(artist, name, type) {
+        overlayTitle.textContent = name;
+        overlaySubtitle.textContent = artist + ' · ' + (type === 'album' ? 'Album' : 'Dossier');
+        if (type === 'album') {
+          overlayEmptyText.textContent = 'Cet album est vide pour le moment.';
+        } else {
+          overlayEmptyText.textContent = 'Ce dossier est vide pour le moment.';
         }
+        overlay.classList.add('open');
       }
 
-      // Gestion des clics sur les boutons "play" (exemple, à personnaliser plus tard)
-      document.querySelectorAll('.play-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          // Ici tu pourras lancer la lecture du MP3 quand tu auras les fichiers
-          alert('Lecteur audio à venir');
+      function closeOverlay() {
+        overlay.classList.remove('open');
+      }
+
+      // Dossiers
+      document.querySelectorAll('.folder-item').forEach(el => {
+        el.addEventListener('click', () => {
+          const artist = el.dataset.artist;
+          const folder = el.dataset.folder;
+          openOverlay(artist, folder, 'folder');
         });
       });
+
+      // Albums
+      document.querySelectorAll('.album-item').forEach(el => {
+        el.addEventListener('click', () => {
+          const artist = el.dataset.artist;
+          const album = el.dataset.album;
+          openOverlay(artist, album, 'album');
+        });
+      });
+
+      closeBtn.addEventListener('click', closeOverlay);
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeOverlay();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) closeOverlay();
+      });
+
+      /* ---------- OPTIONNEL : HASH POUR ONGLETS ---------- */
+      if (window.location.hash) {
+        const hash = window.location.hash.substring(1);
+        if (contents[hash]) activateTab(hash);
+      }
     })();
   </script>
 </body>
