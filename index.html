@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>femtogo.pedo</title>
+  <!-- Font Awesome 6 (icônes) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* RESET & BASE */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0a0a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: #eaeaea;
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Importation de la police Inter */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
+
+    /* CONTENEUR PRINCIPAL */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      width: 100%;
+      flex: 1;
+    }
+
+    /* HEADER */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .logo span {
+      font-weight: 300;
+      color: #7a7a7a;
+      -webkit-text-fill-color: #7a7a7a;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #aaa;
+    }
+
+    .nav-links a {
+      color: #aaa;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .nav-links i {
+      margin-right: 0.4rem;
+    }
+
+    /* TABS (ONGLETS) */
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 1rem;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: #9e9e9e;
+      font-size: 1.2rem;
+      font-weight: 600;
+      padding: 0.6rem 1.4rem;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tab-btn i {
+      font-size: 1rem;
+      opacity: 0.7;
+    }
+
+    .tab-btn:hover {
+      color: #e0e0e0;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .tab-btn.active {
+      background: #ffffff;
+      color: #0a0a0a;
+    }
+
+    .tab-btn.active i {
+      opacity: 1;
+    }
+
+    /* CONTENU DES ONGLETS */
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ARTISTE HEADER */
+    .artist-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .artist-name {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #fff, #b0b0b0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .artist-meta {
+      display: flex;
+      gap: 1.5rem;
+      color: #888;
+      font-size: 0.95rem;
+    }
+
+    .artist-meta i {
+      margin-right: 0.3rem;
+    }
+
+    /* GRILLE DE SORTIES (SINGLES / ALBUMS) */
+    .releases-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.8rem;
+      margin-top: 1rem;
+    }
+
+    .release-card {
+      background: #111111;
+      border-radius: 24px;
+      padding: 1.5rem 1.5rem 1.8rem;
+      transition: transform 0.25s ease, background 0.2s ease;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .release-card:hover {
+      background: #181818;
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .release-cover {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #1e1e1e;
+      border-radius: 16px;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #3a3a3a;
+      font-size: 3rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .release-cover i {
+      opacity: 0.5;
+    }
+
+    .release-title {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.3rem;
+      color: #fff;
+    }
+
+    .release-type {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #6b6b6b;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    .release-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #888;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      padding-top: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .release-info i {
+      margin-right: 0.4rem;
+      font-size: 0.8rem;
+    }
+
+    .play-btn {
+      background: #fff;
+      color: #0a0a0a;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      opacity: 0.9;
+    }
+
+    .play-btn:hover {
+      background: #d4d4d4;
+      transform: scale(1.05);
+      opacity: 1;
+    }
+
+    /* ÉTAT VIDE / PLACEHOLDER */
+    .placeholder-message {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem 2rem;
+      background: #111;
+      border-radius: 28px;
+      border: 1px dashed rgba(255, 255, 255, 0.08);
+      color: #666;
+    }
+
+    .placeholder-message i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.3;
+    }
+
+    .placeholder-message p {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .placeholder-message small {
+      font-size: 0.9rem;
+      opacity: 0.6;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      text-align: center;
+      color: #4a4a4a;
+      font-size: 0.85rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    footer i {
+      color: #5a5a5a;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .container {
+        padding: 1.5rem 1rem;
+      }
+
+      .artist-name {
+        font-size: 2.4rem;
+      }
+
+      .tab-btn {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+      }
+
+      .tabs {
+        gap: 0.4rem;
+      }
+
+      .releases-grid {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+
+    /* STYLE POUR LA BARRE DE DÉFILEMENT (optionnel) */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a0a0a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2a2a2a;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #3a3a3a;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- HEADER -->
+    <header>
+      <div class="logo">tROIS<span>.id</span></div>
+      <div class="nav-links">
+        <a href="#"><i class="fas fa-music"></i> Sorties</a>
+        <a href="#"><i class="fas fa-user"></i> Artistes</a>
+        <a href="#"><i class="fas fa-info-circle"></i> À propos</a>
+      </div>
+    </header>
+
+    <!-- ONGLETS -->
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="femtogo"><i class="fas fa-fire"></i> Femtogo</button>
+      <button class="tab-btn" data-tab="baby-hayabusa"><i class="fas fa-bolt"></i> Baby Hayabusa</button>
+      <button class="tab-btn" data-tab="reggie-petrucci"><i class="fas fa-guitar"></i> Reggie Petrucci</button>
+    </div>
+
+    <!-- CONTENU ONGLET FEMTOGO -->
+    <div id="femtogo" class="tab-content active">
+      <div class="artist-header">
+        <h1 class="artist-name">Femtogo</h1>
+        <div class="artist-meta">
+          <span><i class="fas fa-headphones"></i> 3 sorties</span>
+          <span><i class="fas fa-calendar-alt"></i> 2025</span>
+        </div>
+      </div>
+      <div class="releases-grid">
+        <!-- Carte exemple (sera remplacée par tes singles) -->
+        <div class="release-card">
+          <div class="release-cover"><i class="fas fa-compact-disc"></i></div>
+          <div class="release-title">Nouveau single</div>
+          <div class="release-type">Single</div>
+          <div class="release-info">
+            <span><i class="far fa-clock"></i> 2025</span>
+            <button class="play-btn" aria-label="Play"><i class="fas fa-play"></i></button>
+          </div>
+        </div>
+        <div class="release-card">
+          <div class="release-cover"><i class="fas fa-compact-disc"></i></div>
+          <div class="release-title">Titre à venir</div>
+          <div class="release-type">EP</div>
+          <div class="release-info">
+            <span><i class="far fa-clock"></i> Bientôt</span>
+            <button class="play-btn" aria-label="Play"><i class="fas fa-play"></i></button>
+          </div>
+        </div>
+        <!-- Message placeholder (à retirer quand tu ajoutes les vrais morceaux) -->
+        <div class="placeholder-message">
+          <i class="fas fa-plus-circle"></i>
+          <p>Les singles et albums de Femtogo apparaîtront ici.</p>
+          <small>Ajoute tes fichiers mp3 et infos.</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENU ONGLET BABY HAYABUSA -->
+    <div id="baby-hayabusa" class="tab-content">
+      <div class="artist-header">
+        <h1 class="artist-name">Baby Hayabusa</h1>
+        <div class="artist-meta">
+          <span><i class="fas fa-headphones"></i> 2 sorties</span>
+          <span><i class="fas fa-calendar-alt"></i> 2025</span>
+        </div>
+      </div>
+      <div class="releases-grid">
+        <div class="release-card">
+          <div class="release-cover"><i class="fas fa-compact-disc"></i></div>
+          <div class="release-title">Hayabusa Flow</div>
+          <div class="release-type">Single</div>
+          <div class="release-info">
+            <span><i class="far fa-clock"></i> 2025</span>
+            <button class="play-btn" aria-label="Play"><i class="fas fa-play"></i></button>
+          </div>
+        </div>
+        <div class="placeholder-message">
+          <i class="fas fa-plus-circle"></i>
+          <p>Les projets de Baby Hayabusa seront ajoutés ici.</p>
+          <small>Prêt pour tes MP3 et pochettes.</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENU ONGLET REGGIE PETRUCCI -->
+    <div id="reggie-petrucci" class="tab-content">
+      <div class="artist-header">
+        <h1 class="artist-name">Reggie Petrucci</h1>
+        <div class="artist-meta">
+          <span><i class="fas fa-headphones"></i> 1 sortie</span>
+          <span><i class="fas fa-calendar-alt"></i> 2025</span>
+        </div>
+      </div>
+      <div class="releases-grid">
+        <div class="release-card">
+          <div class="release-cover"><i class="fas fa-compact-disc"></i></div>
+          <div class="release-title">Petrucci's Groove</div>
+          <div class="release-type">Single</div>
+          <div class="release-info">
+            <span><i class="far fa-clock"></i> 2025</span>
+            <button class="play-btn" aria-label="Play"><i class="fas fa-play"></i></button>
+          </div>
+        </div>
+        <div class="placeholder-message">
+          <i class="fas fa-plus-circle"></i>
+          <p>Les morceaux de Reggie Petrucci seront listés ici.</p>
+          <small>Ajoute tes fichiers audio et métadonnées.</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <p><i class="fas fa-copyright"></i> 2025 tROIS · Tous droits réservés</p>
+      <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.5;">Design sobre &amp; efficace — prêt pour tes sorties</p>
+    </footer>
+  </div>
+
+  <!-- SCRIPT POUR LES ONGLETS -->
+  <script>
+    (function() {
+      const tabs = document.querySelectorAll('.tab-btn');
+      const contents = {
+        'femtogo': document.getElementById('femtogo'),
+        'baby-hayabusa': document.getElementById('baby-hayabusa'),
+        'reggie-petrucci': document.getElementById('reggie-petrucci')
+      };
+
+      // Fonction pour activer un onglet
+      function activateTab(tabId) {
+        // Retirer active de tous les boutons et contenus
+        tabs.forEach(btn => btn.classList.remove('active'));
+        Object.values(contents).forEach(content => content.classList.remove('active'));
+
+        // Ajouter active au bon bouton
+        const activeBtn = Array.from(tabs).find(btn => btn.dataset.tab === tabId);
+        if (activeBtn) activeBtn.classList.add('active');
+
+        // Afficher le bon contenu
+        if (contents[tabId]) contents[tabId].classList.add('active');
+      }
+
+      // Ajouter les écouteurs d'événements
+      tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tabId = btn.dataset.tab;
+          activateTab(tabId);
+        });
+      });
+
+      // Optionnel : garder l'onglet actif si on recharge avec un hash
+      // (simple bonus)
+      if (window.location.hash) {
+        const hash = window.location.hash.substring(1);
+        if (contents[hash]) {
+          activateTab(hash);
+        }
+      }
+
+      // Gestion des clics sur les boutons "play" (exemple, à personnaliser plus tard)
+      document.querySelectorAll('.play-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          // Ici tu pourras lancer la lecture du MP3 quand tu auras les fichiers
+          alert('Lecteur audio à venir');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
